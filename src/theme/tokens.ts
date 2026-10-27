@@ -9,6 +9,12 @@ export const palette = {
     "primarySoft": "#E7EDFB",
     "indigo": "#3A1FD0",
     "violet": "#8A0BF7",
+    "carbon": "#17191F",
+    "carbonSoft": "#2A2D35",
+    "onCarbon": "#FFFFFF",
+    "signal": "#FFC52E",
+    "signalSoft": "#FFF3CF",
+    "signalText": "#7A5300",
     "glass": "rgba(255, 255, 255, 0.66)",
     "glassStroke": "rgba(255, 255, 255, 0.75)",
     "primaryLight": "#8FB4FF",
@@ -49,6 +55,8 @@ export const spacing = {
 export const radius = {
   "radiusSm": 10,
   "radiusMd": 14,
+  "radiusControl": 16,
+  "radiusSegment": 18,
   "radiusLg": 24,
   "radiusXl": 30,
   "radiusPill": 999
@@ -61,6 +69,7 @@ export const blur = {
 
 export const shadows = {
   "shadowGlow": "0 10px 24px rgba(58, 31, 208, 0.28)",
+  "shadowSignal": "0 10px 24px rgba(201, 140, 0, 0.24)",
   "shadowFloat": "0 8px 24px rgba(10, 34, 102, 0.10)"
 } as const;
 

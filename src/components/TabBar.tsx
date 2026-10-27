@@ -3,10 +3,9 @@ import type { ComponentProps } from 'react';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { shadows } from '@/theme';
+import { shadows, useTheme } from '@/theme';
 
 import { Glass } from './Glass';
-import { Gradient } from './Gradient';
 import { Icon, type IconName } from './Icon';
 import { Pressable } from './Pressable';
 import { Text } from './Text';
@@ -24,7 +23,7 @@ const meta: Record<string, { icon: IconName; label: string }> = {
   cabinet: { icon: 'user', label: 'Профиль' },
 };
 
-/** Floating glass tab bar, 66 tall, 20 from the edges. Active = primary, icons stay stroke. */
+/** Floating glass tab bar, 66 tall, 20 from the edges. Active = carbon, icons stay stroke. */
 export function TabBar({ state, navigation, live }: TabBarProps & { live?: boolean }) {
   const routes = state.routes.filter((r) => meta[r.name]);
   const insets = useSafeAreaInsets();
@@ -39,8 +38,8 @@ export function TabBar({ state, navigation, live }: TabBarProps & { live?: boole
             const m = meta[r.name] ?? { icon: 'home' as IconName, label: r.name };
             return (
               <Pressable key={r.key} onPress={() => navigation.navigate(r.name)} accessibilityRole="tab" accessibilityState={{ selected: on }} accessibilityLabel={m.label} style={{ flex: 1, alignItems: 'center', gap: 2 }}>
-                <Icon name={m.icon} size={24} color={on ? 'primary' : 'textMuted'} />
-                <Text variant="caption" size={11} weight={on ? 600 : 500} color={on ? 'primary' : 'textMuted'}>{m.label}</Text>
+                <Icon name={m.icon} size={24} color={on ? 'carbon' : 'textMuted'} />
+                <Text variant="caption" size={11} weight={on ? 600 : 500} color={on ? 'carbon' : 'textMuted'}>{m.label}</Text>
               </Pressable>
             );
           })}
@@ -52,14 +51,15 @@ export function TabBar({ state, navigation, live }: TabBarProps & { live?: boole
 
 /** "На посту" pill above the tab bar while guarding is in progress. */
 export function LivePill() {
+  const { c } = useTheme();
   return (
     <Pressable onPress={() => router.push('/guard/live')} accessibilityRole="button" accessibilityLabel="Охрана на посту, открыть">
-      <Gradient style={{ height: 50, borderRadius: 18, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 14, boxShadow: shadows.shadowGlow }}>
-        <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: '#8FB4FF' }} />
-        <Text variant="bodySm" weight={600} color="onPrimary" style={{ flex: 1 }}>На посту · БЦ «Нурлы Тау»</Text>
-        <Text variant="number" size={14} color="onPrimary">05:42:10</Text>
-        <Icon name="chevron-right" size={18} color="onPrimary" />
-      </Gradient>
+      <View style={{ height: 50, borderRadius: 18, backgroundColor: c.signal, flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 14, boxShadow: shadows.shadowSignal }}>
+        <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: c.carbon }} />
+        <Text variant="bodySm" weight={600} color="carbon" numberOfLines={1} style={{ flex: 1 }}>На посту · БЦ «Нурлы Тау»</Text>
+        <Text variant="number" size={14} color="carbon">05:42:10</Text>
+        <Icon name="chevron-right" size={18} color="carbon" />
+      </View>
     </Pressable>
   );
 }

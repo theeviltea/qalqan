@@ -45,10 +45,10 @@ function Visual({ i }: { i: number }) {
     <View style={{ flex: 1 }} pointerEvents="none">
       <MapMock width={440} height={380} />
       <View style={{ position: 'absolute', left: 16, right: 16, bottom: 16, borderRadius: 20, backgroundColor: '#FFFFFF', overflow: 'hidden' }}>
-        <Gradient style={{ paddingHorizontal: 14, paddingVertical: 10, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-          <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: c.primaryLight }} />
-          <Text variant="bodySm" size={13} weight={600} color="onPrimary">На посту с 08:00</Text>
-        </Gradient>
+        <View style={{ backgroundColor: c.signal, paddingHorizontal: 14, paddingVertical: 10, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+          <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: c.carbon }} />
+          <Text variant="bodySm" size={13} weight={600} color="carbon">На посту с 08:00</Text>
+        </View>
         <View style={{ padding: 14, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline' }}>
           <Text variant="number">05:42:10</Text>
           <Text variant="bodySm" size={13} color="textBody">10:00 · обход выполнен</Text>

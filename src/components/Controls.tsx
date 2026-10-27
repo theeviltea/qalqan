@@ -63,10 +63,10 @@ export function Steps({ step, of = 3 }: { step: number; of?: number }) {
 export function Segmented({ options, value, onChange }: { options: string[]; value: number; onChange: (i: number) => void }) {
   const { c } = useTheme();
   return (
-    <View style={{ flexDirection: 'row', padding: 4, borderRadius: 14, backgroundColor: c.backDarker }} accessibilityRole="tablist">
+    <View style={{ flexDirection: 'row', padding: 4, borderRadius: 18, backgroundColor: c.backDarker }} accessibilityRole="tablist">
       {options.map((o, i) => (
-        <Pressable key={o} onPress={() => onChange(i)} accessibilityRole="tab" accessibilityState={{ selected: i === value }} style={{ flex: 1, height: 40, borderRadius: 11, alignItems: 'center', justifyContent: 'center', backgroundColor: i === value ? '#FFFFFF' : 'transparent' }}>
-          <Text variant="bodySm" size={14} weight={i === value ? 600 : 500} color={i === value ? 'textHeadline' : 'textBody'}>{o}</Text>
+        <Pressable key={o} onPress={() => onChange(i)} accessibilityRole="tab" accessibilityState={{ selected: i === value }} style={{ flex: 1, height: 40, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: i === value ? c.carbon : 'transparent' }}>
+          <Text variant="bodySm" size={14} weight={i === value ? 600 : 500} color={i === value ? 'onCarbon' : 'textBody'}>{o}</Text>
         </Pressable>
       ))}
     </View>

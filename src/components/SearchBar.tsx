@@ -1,14 +1,16 @@
 import { router } from 'expo-router';
 import { View } from 'react-native';
 
+import { useTheme } from '@/theme';
+
 import { Glass } from './Glass';
-import { Gradient } from './Gradient';
 import { Icon } from './Icon';
 import { Pressable } from './Pressable';
 import { Text } from './Text';
 
-/** Search row: glass field + filter button (gradient with a count when filters are set). */
+/** Search row: glass field + filter button (signal yellow with a count when filters are set). */
 export function SearchBar({ count = 0 }: { count?: number }) {
+  const { c } = useTheme();
   return (
     <View style={{ flexDirection: 'row', gap: 8 }}>
       <Pressable style={{ flex: 1 }} onPress={() => router.push('/search')} accessibilityRole="search" accessibilityLabel="Поиск агентств">
@@ -19,10 +21,10 @@ export function SearchBar({ count = 0 }: { count?: number }) {
       </Pressable>
       <Pressable onPress={() => router.push('/filter')} accessibilityRole="button" accessibilityLabel={count ? `Фильтры, выбрано ${count}` : 'Фильтры'}>
         {count ? (
-          <Gradient style={{ width: 48, height: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center' }}>
-            <Icon name="filter" size={22} color="onPrimary" />
-            <View style={{ position: 'absolute', top: -4, right: -4, minWidth: 18, height: 18, borderRadius: 9, backgroundColor: '#FFFFFF', alignItems: 'center', justifyContent: 'center' }}><Text variant="caption" size={11} weight={700} color="primary">{count}</Text></View>
-          </Gradient>
+          <View style={{ width: 48, height: 48, borderRadius: 14, backgroundColor: c.signal, alignItems: 'center', justifyContent: 'center' }}>
+            <Icon name="filter" size={22} color="carbon" />
+            <View style={{ position: 'absolute', top: -4, right: -4, minWidth: 18, height: 18, borderRadius: 9, backgroundColor: c.carbon, alignItems: 'center', justifyContent: 'center' }}><Text variant="caption" size={11} weight={700} color="onCarbon">{count}</Text></View>
+          </View>
         ) : (
           <Glass style={{ width: 48, height: 48, borderRadius: 14, alignItems: 'center', justifyContent: 'center' }}><Icon name="filter" size={22} /></Glass>
         )}

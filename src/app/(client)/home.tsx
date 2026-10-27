@@ -1,9 +1,10 @@
 import { router } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 
-import { AgencyCard, Glass, Gradient, Icon, IconButton, Pressable, Screen, SearchBar, SectionTitle, Text } from '@/components';
+import { AgencyCard, Glass, Icon, IconButton, Pressable, Screen, SearchBar, SectionTitle, Text } from '@/components';
 import { agencies } from '@/data/mock';
 import { useStore } from '@/data/store';
+import { shadows, useTheme } from '@/theme';
 
 const cats = [
   { icon: 'building', label: 'Офис' },
@@ -15,6 +16,7 @@ const cats = [
 
 export default function Home() {
   const { name } = useStore();
+  const { c } = useTheme();
   return (
     <Screen tabs>
       <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -27,22 +29,22 @@ export default function Home() {
       <SearchBar />
       <SectionTitle title="Вид охраны" />
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{ marginHorizontal: -20 }} contentContainerStyle={{ paddingHorizontal: 20, gap: 6 }}>
-        {cats.map((c) => (
-          <Pressable key={c.label} onPress={() => router.push('/search')} accessibilityRole="button" accessibilityLabel={c.label} style={{ width: 76, alignItems: 'center', gap: 6 }}>
-            <Glass style={{ width: 64, height: 64, borderRadius: 18, alignItems: 'center', justifyContent: 'center' }}><Icon name={c.icon} size={26} /></Glass>
-            <Text variant="caption">{c.label}</Text>
+        {cats.map((cat) => (
+          <Pressable key={cat.label} onPress={() => router.push('/search')} accessibilityRole="button" accessibilityLabel={cat.label} style={{ width: 76, alignItems: 'center', gap: 6 }}>
+            <Glass style={{ width: 64, height: 64, borderRadius: 18, alignItems: 'center', justifyContent: 'center' }}><Icon name={cat.icon} size={26} /></Glass>
+            <Text variant="caption">{cat.label}</Text>
           </Pressable>
         ))}
       </ScrollView>
       <Pressable onPress={() => router.push('/guard/live')} accessibilityRole="button" accessibilityLabel="Охрана офиса идёт, открыть">
-        <Gradient name="gradSoft" style={{ borderRadius: 24, borderWidth: 1, borderColor: 'rgba(255,255,255,0.75)', padding: 16, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-          <Gradient style={{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' }}><Icon name="shield-check" color="onPrimary" /></Gradient>
-          <View style={{ flex: 1 }}>
+        <View style={{ borderRadius: 24, backgroundColor: c.signal, boxShadow: shadows.shadowSignal, padding: 16, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+          <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: c.carbon, alignItems: 'center', justifyContent: 'center' }}><Icon name="shield-check" color="signal" /></View>
+          <View style={{ flex: 1, minWidth: 0 }}>
             <Text variant="title3" size={15}>Охрана офиса идёт</Text>
-            <Text variant="bodySm" size={13} color="textPrimary">Барыс Охрана · пост 1 · до 20:00</Text>
+            <Text variant="bodySm" size={13} color="carbonSoft" numberOfLines={1}>Барыс Охрана · пост 1 · до 20:00</Text>
           </View>
-          <Icon name="chevron-right" size={20} />
-        </Gradient>
+          <Icon name="chevron-right" size={20} color="carbon" />
+        </View>
       </Pressable>
       <SectionTitle title="Рядом с вами" action="Все" onAction={() => router.push('/search')} />
       {agencies.slice(0, 3).map((a) => <AgencyCard key={a.id} agency={a} onPress={() => router.push(`/agency/${a.id}`)} />)}

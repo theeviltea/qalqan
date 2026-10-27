@@ -9,7 +9,7 @@ function Group({ title, options, value, onChange }: { title: string; options: st
     <View style={{ gap: 10 }}>
       <Text variant="title3" size={15}>{title}</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-        {options.map((o, i) => <Chip key={o} label={o} selected={i === value} onPress={() => onChange(i)} />)}
+        {options.map((o, i) => <Chip key={o} label={o} tone="signal" selected={i === value} onPress={() => onChange(i)} />)}
       </View>
     </View>
   );

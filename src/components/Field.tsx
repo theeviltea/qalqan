@@ -45,7 +45,7 @@ export function Select({ label, value, icon = 'chevron-down', onSurface, onPress
   const { c } = useTheme();
   const inner = (
     <View style={{ height: 52, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingLeft: 16, paddingRight: 14, gap: 8 }}>
-      <Text variant="body" numberOfLines={1} style={{ flex: 1 }}>{value}</Text>
+      <Text variant="body" numberOfLines={1} style={{ flex: 1, minWidth: 0 }}>{value}</Text>
       <Icon name={icon} size={20} color="textBody" />
     </View>
   );

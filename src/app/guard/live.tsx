@@ -2,7 +2,7 @@ import { router } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { Avatar, Button, Card, Divider, Footer, Glass, Gradient, Icon, IconButton, MapMock, Pressable, SectionTitle, Text, Timeline } from '@/components';
+import { Avatar, Button, Card, Divider, Footer, Glass, Icon, IconButton, MapMock, Pressable, SectionTitle, Text, Timeline } from '@/components';
 import { journal } from '@/data/mock';
 import { useCountdown } from '@/data/useCountdown';
 import { useTheme } from '@/theme';
@@ -26,10 +26,10 @@ export default function GuardLive() {
         <View style={{ marginTop: -50, borderTopLeftRadius: 28, borderTopRightRadius: 28, backgroundColor: c.back, paddingHorizontal: 20, paddingTop: 10, gap: 12 }}>
           <View style={{ alignItems: 'center' }}><View style={{ width: 40, height: 5, borderRadius: 3, backgroundColor: c.backDarker }} /></View>
           <Glass style={{ borderRadius: 24 }}>
-            <Gradient style={{ paddingHorizontal: 16, paddingVertical: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}><View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: c.primaryLight }} /><Text variant="bodySm" size={13} weight={600} color="onPrimary">На посту с 08:00</Text></View>
-              <Text variant="bodySm" size={13} weight={600} color="onPrimary">Барыс Охрана</Text>
-            </Gradient>
+            <View style={{ backgroundColor: c.signal, paddingHorizontal: 16, paddingVertical: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <View style={{ flexDirection: 'row', gap: 6, alignItems: 'center' }}><View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: c.carbon }} /><Text variant="bodySm" size={13} weight={600} color="carbon">На посту с 08:00</Text></View>
+              <Text variant="bodySm" size={13} weight={600} color="carbon">Барыс Охрана</Text>
+            </View>
             <View style={{ padding: 16, paddingTop: 14 }}>
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                 <View><Text variant="number" size={28} accessibilityLabel={`До конца смены ${time}`}>{time}</Text><Text variant="bodySm" color="textBody">до конца смены · 08:00—20:00</Text></View>

@@ -11,10 +11,10 @@ import { Text } from './Text';
 export type ButtonVariant = 'primary' | 'secondary' | 'danger' | 'ghost';
 type Props = { label: string; onPress?: () => void; variant?: ButtonVariant; icon?: IconName; disabled?: boolean; style?: StyleProp<ViewStyle>; height?: number };
 
-/** Button 52: primary = grad-primary + shadow-glow, secondary = glass, danger = solid red, ghost = text only. */
+/** Button 52: primary = grad-primary + shadow-glow, secondary = carbon, danger = solid red, ghost = text only. */
 export function Button({ label, onPress, variant = 'primary', icon, disabled, style, height = 52 }: Props) {
   const { c } = useTheme();
-  const fg: keyof Colors = disabled ? 'textMuted' : variant === 'primary' || variant === 'danger' ? 'onPrimary' : 'textHeadline';
+  const fg: keyof Colors = disabled ? 'textMuted' : variant === 'primary' || variant === 'danger' ? 'onPrimary' : variant === 'secondary' ? 'onCarbon' : 'textHeadline';
   const content = (
     <View style={{ height, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 20 }}>
       {icon ? <Icon name={icon} size={20} color={fg} /> : null}
@@ -31,7 +31,7 @@ export function Button({ label, onPress, variant = 'primary', icon, disabled, st
         <Gradient style={{ borderRadius: 16 }}>{content}</Gradient>
       </View>
     );
-  else if (variant === 'secondary') body = <Glass style={{ borderRadius: 16, borderColor: 'rgba(255,255,255,0.85)' }}>{content}</Glass>;
+  else if (variant === 'secondary') body = <View style={{ backgroundColor: c.carbon, borderRadius: 16 }}>{content}</View>;
   else if (variant === 'danger') body = <View style={{ backgroundColor: c.danger, borderRadius: 16 }}>{content}</View>;
   return (
     <Pressable onPress={onPress} disabled={disabled} accessibilityRole="button" accessibilityLabel={label} accessibilityState={{ disabled: !!disabled }} style={style}>
