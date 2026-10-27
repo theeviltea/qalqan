@@ -1,0 +1,21 @@
+{
+  "expo": {
+    "name": "Qalqan",
+    "slug": "qalqan",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "qalqan",
+    "userInterfaceStyle": "light",
+    "android": {
+      "adaptiveIcon": { "backgroundColor": "#143AA8", "foregroundImage": "./assets/images/icon.png" },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": { "output": "single", "favicon": "./assets/images/favicon.png", "name": "Qalqan" },
+    "plugins": [
+      "expo-router",
+      ["expo-splash-screen", { "backgroundColor": "#143AA8", "image": "./assets/images/splash-icon.png", "imageWidth": 96 }]
+    ],
+    "experiments": { "typedRoutes": true, "reactCompiler": true }
+  }
+}
